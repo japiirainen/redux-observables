@@ -1,6 +1,6 @@
 import { SET_CONFIG } from '../actions/configActions'
 
-const initialState = {
+export const initialState = {
    apiBase: 'https://api.punkapi.com/v2/beers',
    perPage: 10,
 }

@@ -1,13 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { BeersList } from './BeersList'
-import { cancel, fetchData, search } from '../redux/actions/beersActions'
+import { cancel, fetchData, random, search } from '../redux/actions/beersActions'
 import { setConfig } from '../redux/actions/configActions'
 
-export const Beers = ({ data, status, messages, fetchData, search, cancel, config, setConfig }) => {
+export const Beers = ({
+   data,
+   status,
+   messages,
+   random,
+   fetchData,
+   search,
+   cancel,
+   config,
+   setConfig,
+}) => {
    return (
       <>
          <div>
+            <button type="button" onClick={random}>
+               random
+            </button>
             <select
                name="per-page"
                defaultValue={config.perPage}
@@ -25,6 +38,7 @@ export const Beers = ({ data, status, messages, fetchData, search, cancel, confi
             <button type="button" disabled={status === 'pending'} onClick={fetchData}>
                Fetch some beers
             </button>
+
             {status === 'pending' && (
                <div>
                   <span>pending...</span>
@@ -53,4 +67,4 @@ function mapState(state) {
    }
 }
 
-export default connect(mapState, { fetchData, search, cancel, setConfig })(Beers)
+export default connect(mapState, { fetchData, search, cancel, setConfig, random })(Beers)
